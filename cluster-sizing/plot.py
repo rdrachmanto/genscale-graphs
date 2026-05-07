@@ -47,8 +47,8 @@ plt.rcParams.update({
     'savefig.facecolor': 'white',
     
     # Font settings - Times-like for academic feel
-    'font.family': 'serif',
-    'font.serif': ['DejaVu Serif', 'Times New Roman', 'Times'],
+    # 'font.family': 'serif',
+    # 'font.serif': ['DejaVu Serif', 'Times New Roman', 'Times'],
     'font.size': 10,
     'axes.titlesize': 11,
     'axes.labelsize': 10,
@@ -843,12 +843,12 @@ def plot_combined_violin_perf_profile_cost(df: pd.DataFrame, objective_name: str
     ax1.set_xticks(range(len(algo_str)))
     ax1.set_xticklabels(algo_str)
     ax1.set_xlabel(None)
-    ax1.set_ylabel('Total Cost ($)', fontsize=14)
+    ax1.set_ylabel('Total Cost ($)', fontsize=16)
     ax1.grid(axis='y', alpha=0.3)
     ax1.spines['top'].set_visible(False)
     ax1.spines['right'].set_visible(False)
-    ax1.tick_params(axis='both', labelsize=14, length=0)
-    ax1.set_title("(a) Cost distribution", fontsize=14)
+    ax1.tick_params(axis='both', labelsize=16, length=0)
+    ax1.set_title("(a) Cost distribution", fontsize=16)
     
     # Performance profile
     palette = wesanderson.film_palette('The Royal Tenenbaums', 0)
@@ -864,19 +864,19 @@ def plot_combined_violin_perf_profile_cost(df: pd.DataFrame, objective_name: str
             marker='o',
             markersize=6,
             linewidth=2,
-            label=algo_str[i],   # use pretty labels directly
+            label=algo_str[::-1][i],   # use pretty labels directly
             color=palette[i],
             alpha=0.8
         )
     
-    ax2.set_xlabel('Total Cost ($)', fontsize=14)
-    ax2.set_ylabel('Cumulative Probability (%)', fontsize=14)
+    ax2.set_xlabel('Total Cost ($)', fontsize=16)
+    ax2.set_ylabel('Cum. Probability (%)', fontsize=16)
     ax2.grid(True, alpha=0.3)
     ax2.legend(fontsize=14, frameon=False)
     ax2.spines['top'].set_visible(False)
     ax2.spines['right'].set_visible(False)
     ax2.tick_params(axis='both', labelsize=14, length=0)
-    ax2.set_title("(b) Budget-meeting probability", fontsize=14)
+    ax2.set_title("(b) Budget-meeting probability", fontsize=16)
     
     plt.tight_layout()
     

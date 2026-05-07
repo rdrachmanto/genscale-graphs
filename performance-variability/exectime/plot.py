@@ -164,12 +164,12 @@ def plot_cpu_comparison(tool_data, tool_name, ax=None, return_handles=False):
     # ax.set_title(f'{tool_name}\nCPU Performance Comparison', fontsize=18)
     ax.set_xscale('linear')  # Both used to be log
     ax.set_yscale('linear')
-    ax.tick_params(axis='both', labelsize=14, length=0)
+    ax.tick_params(axis='both', labelsize=16, length=0)
     
     # Adjust legend to handle potentially many CPUs
     if standalone:
         # legend = ax.legend(frameon=False, loc='best', fontsize=12, ncol=1 if len(valid_cpus) <= 3 else 2)
-        legend = ax.legend(frameon=False, loc='best', fontsize=12, ncol=1 if len(valid_cpus) <= 3 else 2)
+        legend = ax.legend(frameon=False, loc='best', fontsize=13, ncol=1 if len(valid_cpus) <= 3 else 2)
     
     ax.grid(True, alpha=0.5, linestyle=':', linewidth=0.5)
     
@@ -237,25 +237,26 @@ def plot_combined_comparison(df, tool1, tool2, output_name):
 tools = sorted(df['tool_name'].unique())
 success_count = 0
 
-# for tool in tools:
-#     tool_data = df[df['tool_name'] == tool].copy()
+for tool in tools:
+    tool_data = df[df['tool_name'] == tool].copy()
     
-#     try:
-#         if plot_cpu_comparison(tool_data, tool):
-#             success_count += 1
-#             safe_name = tool.replace('/', '_').replace(' ', '_')
-#             print(f"[Success] Saved: cpu_compare_{safe_name}.svg")
-#     except Exception as e:
-#         print(f"[Error] {tool}: {e}")
-#         plt.close('all')
+    try:
+        if plot_cpu_comparison(tool_data, tool):
+            success_count += 1
+            safe_name = tool.replace('/', '_').replace(' ', '_')
+            print(f"[Success] Saved: cpu_compare_{safe_name}.svg")
+    except Exception as e:
+        print(f"[Error] {tool}: {e}")
+        plt.close('all')
 
-# print(f"\n=== Generation Complete ===")
+print(f"\n=== Generation Complete ===")
 # print(f"Successfully generated {success_count} CPU comparison plots")
 
 # Create combined plot for picard-collect-wgs-metrics and burrows-wheeler-aligner
-print(f"\n=== Creating Combined Plot ===")
-if plot_combined_comparison(df, 'picard-collect-wgs-metrics', 'burrows-wheeler-aligner', 
-                            'cpu_compare_combined_picard_bwa.pdf'):
-    print("[Success] Saved: cpu_compare_combined_picard_bwa.svg")
-else:
-    print("[Error] Could not create combined plot")
+
+# print(f"\n=== Creating Combined Plot ===")
+# if plot_combined_comparison(df, 'picard-collect-wgs-metrics', 'burrows-wheeler-aligner', 
+#                             'cpu_compare_combined_picard_bwa.pdf'):
+#     print("[Success] Saved: cpu_compare_combined_picard_bwa.svg")
+# else:
+#     print("[Error] Could not create combined plot")

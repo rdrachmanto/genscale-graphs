@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import io
 from matplotlib.ticker import FuncFormatter
 import numpy as np
+from matplotlib.patches import Rectangle
 
 try:
     from adjustText import adjust_text
@@ -274,58 +275,39 @@ def plot_memory_vs_time(df, ax=None, standalone=True, x_split=None, y_split=None
     y_min = df_plot['total_wastage_tb'].min() * 0.92
     y_max = df_plot['total_wastage_tb'].max() * 1.08
 
-    # ----------------------------
-    # Highlight lower-left best region
-    # ----------------------------
+    famr_methods = ['FAMR-A', 'FAMR-B', 'FAMR-C']
+    famr_df = df_plot[df_plot['method_name'].isin(famr_methods)]
+    
+    if not famr_df.empty:
+        famr_x_min = famr_df['total_retry_time_h'].min()
+        famr_x_max = famr_df['total_retry_time_h'].max()
+        famr_y_min = famr_df['total_wastage_tb'].min()
+        famr_y_max = famr_df['total_wastage_tb'].max()
+    
+        x_pad = 2.0
+        y_pad = 0.1
+    
+        famr_box = Rectangle(
+            (famr_x_min - x_pad, famr_y_min - y_pad),
+            (famr_x_max - famr_x_min) + 2 * x_pad,
+            (famr_y_max - famr_y_min) + 2 * y_pad,
+            fill=False,
+            edgecolor='blue',
+            linewidth=1.4,
+            linestyle='--',
+            zorder=2
+        )
 
-    # Quadrant divider lines
-    # ax.axvline(
-    #     x_split,
-    #     color='red',
-    #     linestyle='--',
-    #     linewidth=1.2,
-    #     zorder=1
-    # )
-
-    # ax.axhline(
-    #     y_split,
-    #     color='red',
-    #     linestyle='--',
-    #     linewidth=1.2,
-    #     zorder=1
-    # )
-
-    # ----------------------------
-    # Annotate divider lines
-    # ----------------------------
-    # ax.text(
-    #     x_split + 0.015 * (x_max - x_min),
-    #     y_max - 0.03 * (y_max - y_min),
-    #     f'Low Retry Time',
-    #     rotation=90,
-    #     fontsize=12,
-    #     color='red',
-    #     ha='left',
-    #     va='top',
-    #     bbox=dict(
-    #         boxstyle='round,pad=0.2',
-    #         facecolor='white',
-    #         edgecolor='none',
-    #         alpha=0.8
-    #     ),
-    #     arrowprops=dict(
-    #         arrowstyle="->",
-    #         linewidth=1,
-    #     ),
-    # )
+    ax.add_patch(famr_box)
+    
     # place near upper-left inside the axes
     x_anno = 0.02
     y_anno = 0.6
     
     ax.text(
         x_anno,
-        y_anno,
-        'Low Retry Time',
+        y_anno - 0.05,
+        'Low Wasted Memory',
         transform=ax.transAxes,
         rotation=90,
         rotation_mode='anchor',
@@ -343,21 +325,25 @@ def plot_memory_vs_time(df, ax=None, standalone=True, x_split=None, y_split=None
     
     ax.annotate(
         "",
-        xy=(x_anno, y_anno - 0.18),      # lower point -> arrow tip
-        xytext=(x_anno, y_anno - 0.04),  # higher point -> arrow start
+        xy=(x_anno + 0.05, y_anno),      # lower point -> arrow tip
+        xytext=(x_anno + 0.05, y_anno + 0.35),  # higher point -> arrow start
         xycoords=ax.transAxes,
         textcoords=ax.transAxes,
         arrowprops=dict(
             arrowstyle="->",
             linewidth=1,
-            color="black",
+            color="red",
         ),
     )
 
+    x1_anno = 0.97   # near right edge of axes
+    y1_anno = 0.02   # just above bottom / x-axis
+    
     ax.text(
-        x_max - 0.05 * (x_max - x_min),
-        y_split + 0.015 * (y_max - y_min),
-        f'Low Wasted Memory',
+        x1_anno,
+        y1_anno,
+        'Low Retry Time',
+        transform=ax.transAxes,
         fontsize=12,
         color='red',
         ha='right',
@@ -368,6 +354,19 @@ def plot_memory_vs_time(df, ax=None, standalone=True, x_split=None, y_split=None
             edgecolor='none',
             alpha=0.8
         )
+    )
+    
+    ax.annotate(
+        "",
+        xy=(x1_anno - 0.25, y1_anno + 0.052),   # arrow tip on the left
+        xytext=(x1_anno, y1_anno + 0.052),  # start closer to the text on the right
+        xycoords=ax.transAxes,
+        textcoords=ax.transAxes,
+        arrowprops=dict(
+            arrowstyle="->",
+            linewidth=1,
+            color="red",
+        ),
     )
 
     # ----------------------------
@@ -439,6 +438,10 @@ def plot_memory_vs_time(df, ax=None, standalone=True, x_split=None, y_split=None
     ax.spines['top'].set_visible(False)
     ax.spines['right'].set_visible(False)
 
+    ax.tick_params(axis='both', length=0)
+    ax.set_axisbelow(True)
+    ax.grid(True, alpha=0.4)
+    
     plt.tight_layout()
 
     if standalone:
