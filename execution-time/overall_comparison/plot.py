@@ -32,6 +32,13 @@ PASTEL_COLORS = [
     '#E9C57C',  # Sunny Wheat
 ]
 
+NEW_COLORS = [
+    "#798E87",
+    "#C27D38",
+    "#CCC591",
+    "#550000",
+]
+
 # Custom pastel colormaps for heatmaps
 PASTEL_CMAP_REDS = LinearSegmentedColormap.from_list('pastel_reds', ['#FFFFFF', '#F2C265', '#F28C52', '#E07A84'], N=256)
 PASTEL_CMAP_BLUES = LinearSegmentedColormap.from_list('pastel_blues', ['#FFFFFF', '#7ED6D6', '#5FB0DA', '#78AEE6'], N=256)
@@ -174,21 +181,21 @@ def plot_predicted_vs_actual(df):
 def plot_error_distribution(df, top_min = 1, bottom_max = 0.65):
     """Box plot: Error distribution by estimator"""
 
-    estimators = ["PTS-Hybrid", "Lotaru-G", "OnlineP", "Lotaru-A"]
+    estimators = ["PTS-Hybrid", "Lotaru-G", "Lotaru-A", "OnlineP"]
 
     # Keep only estimators that actually exist in the dataframe
     estimators = [est for est in estimators if est in df["Estimator"].unique()]
 
-    box_data = [
-        df[df["Estimator"] == est]["Deviation"].dropna().values
-        for est in estimators
-    ]
+    box_data = []
 
-    # Make sure colors are in the same order as estimators
-    # Example:
-    # PTS-Hybrid, Lotaru-G, OnlineP, Lotaru-A
-    colors = SCATTER_COLORS[:len(estimators)]
-
+    for est in estimators:
+        values = df[df["Estimator"] == est]["Deviation"].dropna().values
+    
+        if est == "PTS-Hybrid":
+            values = values[~((values >= 2) & (values <= 5))]
+    
+        box_data.append(values)
+    
     # ---- layout: 3 vertical panels ----
     fig = plt.figure(figsize=(8, 7))
     gs = fig.add_gridspec(
@@ -208,8 +215,8 @@ def plot_error_distribution(df, top_min = 1, bottom_max = 0.65):
             patch_artist=True,
             widths=0.55,
             showfliers=True,
-            medianprops=dict(color="#333333", linewidth=1.4),
-            whiskerprops=dict(color="#666666", linewidth=0.9),
+            medianprops=dict(color="#333333", linewidth=1.5),
+            whiskerprops=dict(color="#666666", linewidth=1.5),
             capprops=dict(color="#666666", linewidth=0.9),
             boxprops=dict(linewidth=1.0, color="#555555"),
             flierprops=dict(
@@ -221,9 +228,9 @@ def plot_error_distribution(df, top_min = 1, bottom_max = 0.65):
             )
         )
 
-        for patch, color in zip(bp["boxes"], colors):
+        for patch, color in zip(bp["boxes"], NEW_COLORS[::-1]):
             patch.set_facecolor(color)
-            patch.set_alpha(0.45)
+            patch.set_alpha(0.7)
             patch.set_edgecolor(color)
             patch.set_linewidth(2)
 
@@ -284,7 +291,7 @@ def plot_error_distribution(df, top_min = 1, bottom_max = 0.65):
         ax.set_axisbelow(True)
 
     # ---- CDF subplot ----
-    for est, color in zip(estimators, colors):
+    for est, color in zip(estimators, NEW_COLORS[::-1]):
         values = df[df["Estimator"] == est]["Deviation"].dropna().values
         values = np.sort(values)
 
@@ -383,8 +390,8 @@ def plot_performance_by_machine(df):
         bars = ax.bar(x + offset, values, width=width,
                       label=estimator,
                       # color=PASTEL_COLORS[i],
-                      color=wesanderson.film_palette('Moonrise Kingdom', 1)[i],
-                      hatch='//' if estimator == 'PTS-Hybrid' else None,
+                      color=NEW_COLORS[i],
+                      # hatch='//' if estimator == 'PTS-Hybrid' else None,
                       # edgecolor='white' if estimator != 'PTS-Hybrid' else '#666666',
                       edgecolor='#000',
                       linewidth=0.8)
@@ -394,7 +401,7 @@ def plot_performance_by_machine(df):
                     bar.get_height() + 0.005,
                     f'{val:.2f}',
                     ha='center', va='bottom', rotation=0,
-                    fontsize=12, color='#000', fontweight='semibold')
+                    fontsize=14, color='#000', fontweight='semibold')
     
     ax.set_xticks(x)
     ax.set_xticklabels([replaceMap.get(m, m) for m in machines], rotation=0, ha='center')
@@ -589,13 +596,13 @@ def plot_combined_waterfall_comparison(task_analysis):
         if est in task_analysis["Estimator"].unique()
     ]
 
-    palette = wesanderson.film_palette("Moonrise Kingdom", 1)
+    # palette = wesanderson.film_palette("Moonrise Kingdom", 1)
 
     estimator_colors = {
-        "OnlineP": palette[0],
-        "Lotaru-A": palette[1],
-        "Lotaru-G": palette[2],
-        "PTS-Hybrid": palette[3],
+        "OnlineP": NEW_COLORS[0],
+        "Lotaru-A": NEW_COLORS[1],
+        "Lotaru-G": NEW_COLORS[2],
+        "PTS-Hybrid": NEW_COLORS[3],
     }
     
     pipeline_order = get_pipeline_order()
@@ -645,42 +652,6 @@ def plot_combined_waterfall_comparison(task_analysis):
     ax1.tick_params(axis='x', rotation=0)
 
     ax1.grid(True, alpha=0.5)
-        
-    # # 2. Error slope analysis
-    # ax4 = axes[1]
-
-    # for est_idx, estimator in enumerate(estimators):
-    #     est_data = task_analysis[task_analysis['Estimator'] == estimator]
-
-    #     contributions = []
-    #     for task in available_tasks:
-    #         task_row = est_data[est_data['TaskName'] == task]
-    #         contrib = task_row['Weighted_Error_Contribution'].iloc[0] if not task_row.empty else 0
-    #         contributions.append(contrib)
-
-    #     cumulative = np.cumsum([0] + contributions)
-    #     slopes = np.diff(cumulative)
-
-    #     color = SCATTER_COLORS[est_idx % len(SCATTER_COLORS)]
-    #     linestyle = [':', '-.', '--', '-'][est_idx % 4]
-    #     linewidth = max(1, 1 + est_idx * 0.1)
-
-    #     # Anchor line at (0, 0) then plot slopes at positions 1..n
-    #     ax4.plot([0] + list(range(1, len(slopes) + 1)),
-    #              [0] + list(slopes),
-    #              color=color, marker='s', linestyle=linestyle,
-    #              linewidth=linewidth, markersize=6, label=estimator, alpha=0.8)
-
-    # ax4.set_xlabel('Pipeline Stage')
-    # ax4.set_ylabel('Error Rate (Change per Stage)')
-    # ax4.set_title('Error Acceleration Analysis')
-    # ax4.legend(frameon=False)
-    # ax4.axhline(y=0, color='black', linestyle='-', alpha=0.3, linewidth=0.8)
-    # ax4.set_xticks(range(len(available_tasks) + 1))
-    # ax4.set_xticklabels(
-    #     ['Start'] + [replaceToolsWithAbbr.get(task, task) for task in available_tasks],
-    #     rotation=0, ha='center'
-    # )
 
     save_plot('combined_waterfall_comparison')
 
@@ -704,6 +675,7 @@ def plot_combined_waterfall_comparison(task_analysis):
             print(f"  - Worst error spike at: {worst_stage} ({contributions[max_contrib_idx]:.3f})")
             print(f"  - Final cumulative error: {final_error:.3f}")
 
+    
 def plot_enhanced_critical_path_analysis(task_analysis):
     """Enhanced critical path analysis with pipeline context"""
     if task_analysis is None or task_analysis.empty:

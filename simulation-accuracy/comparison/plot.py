@@ -105,7 +105,7 @@ def draw_norm_bar(ax, xi, bw, sim, act, c_fill, c_good=C_GOOD, c_bad=C_BAD):
 
     ax.text(xi, label_y, label,
             ha='center', va=label_va,
-            fontsize=11, color=ec, fontweight='bold', zorder=8,
+            fontsize=14, color=ec, fontweight='bold', zorder=8,
             bbox=dict(facecolor='white', edgecolor='none', alpha=0.75,
                       boxstyle='round,pad=0.15'))
 
@@ -146,11 +146,11 @@ def finish_norm_axes(ax, config_ids, all_ratios, title, legend_handles):
 
     ax.set_xticks(range(len(config_ids)))
     ax.set_xticklabels(config_ids, fontsize=6)
-    ax.set_ylabel('Simulated / Actual  (actual = 0%)', fontsize=13)
-    ax.set_xlabel('Configuration ID', fontsize=13)
+    ax.set_ylabel('Simulated / Actual  (actual = 0%)', fontsize=15)
+    ax.set_xlabel('Configuration ID', fontsize=15)
     # ax.set_title(title, fontsize=13, fontweight='normal', pad=14)
 
-    ax.tick_params(axis='both', length=0, labelsize=13)
+    ax.tick_params(axis='both', length=0, labelsize=15)
     
     # annotations for band edges
     n = len(config_ids)
@@ -160,7 +160,7 @@ def finish_norm_axes(ax, config_ids, all_ratios, title, legend_handles):
                 fontsize=7, color=C_BAND, alpha=0.7)
 
     fig = ax.get_figure()
-    fig.legend(handles=legend_handles, fontsize=13, frameon=False,
+    fig.legend(handles=legend_handles, fontsize=15, frameon=False,
                loc='lower center', ncol=3,
                bbox_to_anchor=(0.5, -0.05),
                facecolor='white', edgecolor='#cccccc', framealpha=0.92,

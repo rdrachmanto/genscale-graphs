@@ -17,15 +17,15 @@ except ImportError:
 # Color families: warm tones for baselines, cool tones for FAMR
 BASELINE_COLORS = {
     'Sizey':           '#E07A84',  # Strong Rose
-    'WittPercentile':  '#F28C52',  # Vibrant Coral
-    'WittRegression':  '#C38BC3',  # Rich Lavender
-    'Statistical_P95': '#F2C265',  # Warm Sand
+    'WittPer.':  '#F28C52',  # Vibrant Coral
+    'WittReg.':  '#C38BC3',  # Rich Lavender
+    'P95': '#F2C265',  # Warm Sand
 }
 
 FAMR_COLORS = {
-    'FAMR_1':    '#5FB0DA',  # Bright Sky Blue
-    'FAMR_1.15': '#78AEE6',  # Clear Periwinkle
-    'FAMR_2':    '#7ED6D6',  # Crisp Aqua
+    'FAMR-A':    '#5FB0DA',  # Bright Sky Blue
+    'FAMR-B': '#78AEE6',  # Clear Periwinkle
+    'FAMR-C':    '#7ED6D6',  # Crisp Aqua
 }
 
 FAMR_HATCH = '///'
@@ -209,68 +209,6 @@ def plot_time_wastage(df, ax=None, standalone=True):
 # ============================================================================
 
 def plot_memory_vs_time(df, ax=None, standalone=True, x_split=None, y_split=None):
-    # if ax is None:
-    #     fig, ax = plt.subplots(figsize=(6, 5)) # Old: (7, 5)
-
-    # for method in df['method_name'].unique():
-    #     row = df[df['method_name'] == method].iloc[0]
-    #     color = get_method_color(method)
-    #     edgecolor = '#2a6e96' if is_famr(method) else '#333333'
-    #     size = 80
-
-    #     ax.scatter(
-    #         row['total_retry_time_s'],
-    #         row['total_wastage_mb'],
-    #         s=size, color=color, edgecolor=edgecolor,
-    #         linewidth=1.0 if is_famr(method) else 0.5,
-    #         alpha=0.85, label=method, zorder=3, marker='o'
-    #     )
-
-    # ax.set_title('Memory Wastage vs. Time Wastage', pad=10, fontsize=18)
-    # ax.set_xlabel('Total Retry Time (seconds)', fontsize=16)
-    # ax.set_ylabel('Total Memory Wasted (MB)', fontsize=16)
-    # ax.set_yscale('log')
-
-    # ax.xaxis.set_major_formatter(FuncFormatter(
-    #     lambda x, p: f'{int(x/1000)}K' if x >= 1000 else f'{int(x)}'))
-    # ax.yaxis.set_major_formatter(FuncFormatter(
-    #     lambda y, p: f'{y/1e6:.1f}M' if y >= 1e6 else f'{y/1e3:.0f}K'))
-
-    # # Annotate key outliers
-    # min_time_idx = df['total_retry_time_s'].idxmin()
-    # max_time_idx = df['total_retry_time_s'].idxmax()
-    # min_mem_idx = df['total_wastage_mb'].idxmin()
-    # max_mem_idx = df['total_wastage_mb'].idxmax()
-    # annotate_indices = list(set([min_time_idx, max_time_idx, min_mem_idx, max_mem_idx]))
-
-    # for idx in annotate_indices:
-    #     row = df.loc[idx]
-    #     ax.annotate(
-    #         row['method_name'],
-    #         xy=(row['total_retry_time_s'], row['total_wastage_mb']),
-    #         xytext=(10, 10), textcoords='offset points', fontsize=8, color='#333333',
-    #         bbox=dict(boxstyle='round,pad=0.3', facecolor='white',
-    #                   edgecolor='#CCCCCC', alpha=0.7, linewidth=0.5),
-    #         arrowprops=dict(arrowstyle='->', connectionstyle='arc3,rad=0.3',
-    #                        color='#666666', lw=0.5, alpha=0.6)
-    #     )
-
-    # # Per-method legend
-    # from matplotlib.lines import Line2D
-    # legend_elements = []
-    # for m in df['method_name'].unique():
-    #     legend_elements.append(Line2D([0], [0], marker='o', color='w',
-    #         markerfacecolor=get_method_color(m),
-    #         markeredgecolor='#2a6e96' if is_famr(m) else '#333333',
-    #         markersize=7, linewidth=0, label=m))
-
-    # ax.tick_params(axis='both', labelsize=16)
-    # ax.legend(handles=legend_elements, loc='upper right', frameon=False, fontsize=10,
-    #           handletextpad=0.4, labelspacing=0.3)
-
-    # if standalone:
-    #     save_plot('memory_vs_time_scatter')
-
     if ax is None:
         fig, ax = plt.subplots(figsize=(7, 5))
 
@@ -282,25 +220,37 @@ def plot_memory_vs_time(df, ax=None, standalone=True, x_split=None, y_split=None
 
     marker_map = {
         'Sizey': 'o',
-        'WittPercentile': 's',
-        'WittRegression': 'D',
-        'Statistical_P95': '^',
-        'FAMR_1': 'P',
-        'FAMR_1.15': 'X',
-        'FAMR_2': 'v',
+        'WittPer.': 's',
+        'WittReg.': 'D',
+        'P95': '^',
+        'FAMR-A': 'P',
+        'FAMR-B': 'X',
+        'FAMR-C': 'v',
     }
 
     fallback_markers = ['o', 's', 'D', '^', 'v', 'P', 'X', '*', '<', '>']
 
     label_offsets = {
         'Sizey': (10, 8),
-        'WittPercentile': (8, 10),
-        'WittRegression': (10, 8),
-        'Statistical_P95': (8, -12),
-        'FAMR_1': (10, -3),
-        'FAMR_1.15': (8, 14),
-        'FAMR_2': (10, 8),
+        'WittPer.': (8, 10),
+        'WittReg.': (10, 8),
+        'P95': (8, -12),
+        'FAMR-A': (10, -3),
+        'FAMR-B': (8, 14),
+        'FAMR-C': (10, 8),
     }
+
+    rename_methods = {
+        'Sizey': 'Sizey',
+        'WittPercentile': 'WittPer.',
+        'WittRegression': 'WittReg.',
+        'Statistical_P95': 'P95',
+        'FAMR_1': 'FAMR-A',
+        'FAMR_1.15': 'FAMR-B',
+        'FAMR_2': 'FAMR-C',
+    }
+    
+    df_plot['method_name'] = df_plot['method_name'].replace(rename_methods)
 
     methods = df_plot['method_name'].unique()
 
@@ -327,49 +277,58 @@ def plot_memory_vs_time(df, ax=None, standalone=True, x_split=None, y_split=None
     # ----------------------------
     # Highlight lower-left best region
     # ----------------------------
-    ax.axvspan(
-        x_min,
-        x_split,
-        color='green',
-        alpha=0.05,
-        zorder=0
-    )
-
-    ax.axhspan(
-        y_min,
-        y_split,
-        xmin=0,
-        xmax=(x_split - x_min) / (x_max - x_min),
-        color='green',
-        alpha=0.10,
-        zorder=0
-    )
 
     # Quadrant divider lines
-    ax.axvline(
-        x_split,
-        color='red',
-        linestyle='--',
-        linewidth=1.2,
-        zorder=1
-    )
+    # ax.axvline(
+    #     x_split,
+    #     color='red',
+    #     linestyle='--',
+    #     linewidth=1.2,
+    #     zorder=1
+    # )
 
-    ax.axhline(
-        y_split,
-        color='red',
-        linestyle='--',
-        linewidth=1.2,
-        zorder=1
-    )
+    # ax.axhline(
+    #     y_split,
+    #     color='red',
+    #     linestyle='--',
+    #     linewidth=1.2,
+    #     zorder=1
+    # )
 
     # ----------------------------
     # Annotate divider lines
     # ----------------------------
+    # ax.text(
+    #     x_split + 0.015 * (x_max - x_min),
+    #     y_max - 0.03 * (y_max - y_min),
+    #     f'Low Retry Time',
+    #     rotation=90,
+    #     fontsize=12,
+    #     color='red',
+    #     ha='left',
+    #     va='top',
+    #     bbox=dict(
+    #         boxstyle='round,pad=0.2',
+    #         facecolor='white',
+    #         edgecolor='none',
+    #         alpha=0.8
+    #     ),
+    #     arrowprops=dict(
+    #         arrowstyle="->",
+    #         linewidth=1,
+    #     ),
+    # )
+    # place near upper-left inside the axes
+    x_anno = 0.02
+    y_anno = 0.6
+    
     ax.text(
-        x_split + 0.015 * (x_max - x_min),
-        y_max - 0.03 * (y_max - y_min),
-        f'Low Retry Time',
+        x_anno,
+        y_anno,
+        'Low Retry Time',
+        transform=ax.transAxes,
         rotation=90,
+        rotation_mode='anchor',
         fontsize=12,
         color='red',
         ha='left',
@@ -379,11 +338,24 @@ def plot_memory_vs_time(df, ax=None, standalone=True, x_split=None, y_split=None
             facecolor='white',
             edgecolor='none',
             alpha=0.8
-        )
+        ),
+    )
+    
+    ax.annotate(
+        "",
+        xy=(x_anno, y_anno - 0.18),      # lower point -> arrow tip
+        xytext=(x_anno, y_anno - 0.04),  # higher point -> arrow start
+        xycoords=ax.transAxes,
+        textcoords=ax.transAxes,
+        arrowprops=dict(
+            arrowstyle="->",
+            linewidth=1,
+            color="black",
+        ),
     )
 
     ax.text(
-        x_max - 0.10 * (x_max - x_min),
+        x_max - 0.05 * (x_max - x_min),
         y_split + 0.015 * (y_max - y_min),
         f'Low Wasted Memory',
         fontsize=12,

@@ -820,30 +820,35 @@ def plot_style_12_stacked_area(df: pd.DataFrame, objective_name: str, output_pat
 
 def plot_combined_violin_perf_profile_cost(df: pd.DataFrame, objective_name: str, output_path: Path):
     algorithms = df['algorithm'].unique()
-    algo_str = ["BO-Classic", "BnB+BO"]
+    algo_str = ["BnB+BO", "BO-Classic"]
     
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(8, 3))
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(9, 3))
 
+    colors = [
+        "#899DA4",
+        "#C93312",
+    ]
+    
     # Violin plot
     sns.violinplot(
         data=df,
         x='algorithm',
         y='total_cost',
         ax=ax1,
-        palette=wesanderson.film_palette('The Royal Tenenbaums', 0),
+        palette=colors[::-1],
         inner='quartile',
-        order=algorithms
+        order=algorithms[::-1]
     )
     
     ax1.set_xticks(range(len(algo_str)))
     ax1.set_xticklabels(algo_str)
     ax1.set_xlabel(None)
-    ax1.set_ylabel('Total Cost ($)', fontsize=11)
+    ax1.set_ylabel('Total Cost ($)', fontsize=14)
     ax1.grid(axis='y', alpha=0.3)
     ax1.spines['top'].set_visible(False)
     ax1.spines['right'].set_visible(False)
-    ax1.tick_params(axis='both', labelsize=11, length=0)
-    ax1.set_title("(a) Cost distribution")
+    ax1.tick_params(axis='both', labelsize=14, length=0)
+    ax1.set_title("(a) Cost distribution", fontsize=14)
     
     # Performance profile
     palette = wesanderson.film_palette('The Royal Tenenbaums', 0)
@@ -864,14 +869,14 @@ def plot_combined_violin_perf_profile_cost(df: pd.DataFrame, objective_name: str
             alpha=0.8
         )
     
-    ax2.set_xlabel('Total Cost ($)', fontsize=11)
-    ax2.set_ylabel('Cumulative Probability (%)', fontsize=11)
+    ax2.set_xlabel('Total Cost ($)', fontsize=14)
+    ax2.set_ylabel('Cumulative Probability (%)', fontsize=14)
     ax2.grid(True, alpha=0.3)
-    ax2.legend(fontsize=11, frameon=False)
+    ax2.legend(fontsize=14, frameon=False)
     ax2.spines['top'].set_visible(False)
     ax2.spines['right'].set_visible(False)
-    ax2.tick_params(axis='both', labelsize=11, length=0)
-    ax2.set_title("(b) Budget-meeting probability")
+    ax2.tick_params(axis='both', labelsize=14, length=0)
+    ax2.set_title("(b) Budget-meeting probability", fontsize=14)
     
     plt.tight_layout()
     
