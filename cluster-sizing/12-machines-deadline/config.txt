@@ -1,0 +1,148 @@
+CONFIG = {
+    "apiUrl": "http://localhost:3333",
+    
+    "availableMachines": [
+        {
+            "machineId": "epyc-c1-m4-01",
+            "hardwareId": "CPU:AMD EPYC 7352 24-Core Processor,Memory:257497MiB,Cores:96",
+            "costPerHour": 0.08,
+            "allocatable": {
+                "cpu": "1",
+                "memory": "4Gi"
+            }
+        },
+        {
+            "machineId": "epyc-c3-m12-02",
+            "hardwareId": "CPU:AMD EPYC 7352 24-Core Processor,Memory:257497MiB,Cores:96",
+            "costPerHour": 0.28,
+            "allocatable": {
+                "cpu": "3",
+                "memory": "12Gi"
+            }
+        },
+        {
+            "machineId": "xeon-c4-m8-03",
+            "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+            "costPerHour": 0.32,
+            "allocatable": {
+                "cpu": "4",
+                "memory": "16Gi"
+            }
+        },
+        {
+            "machineId": "epyc-c4-m16-04",
+            "hardwareId": "CPU:AMD EPYC 7352 24-Core Processor,Memory:257497MiB,Cores:96",
+            "costPerHour": 0.4,
+            "allocatable": {
+                "cpu": "4",
+                "memory": "16Gi"
+            }
+        },
+        {
+            "machineId": "xeon-c5-m20-05",
+            "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+            "costPerHour": 0.44,
+            "allocatable": {
+                "cpu": "5",
+                "memory": "20Gi"
+            }
+        },
+        {
+            "machineId": "epyc-c6-m12-06",
+            "hardwareId": "CPU:AMD EPYC 7352 24-Core Processor,Memory:257497MiB,Cores:96",
+            "costPerHour": 0.48,
+            "allocatable": {
+                "cpu": "6",
+                "memory": "24Gi"
+            }
+        },
+        {
+            "machineId": "xeon-c6-m24-7",
+            "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+            "costPerHour": 0.56,
+            "allocatable": {
+                "cpu": "6",
+                "memory": "24Gi"
+            }
+        },
+        {
+            "machineId": "xeon-c8-m16-8",
+            "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+            "costPerHour": 0.64,
+            "allocatable": {
+                "cpu": "8",
+                "memory": "32Gi"
+            }
+        },
+        {
+            "machineId": "xeon-c16-m32-9",
+            "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+            "costPerHour": 1.28,
+            "allocatable": {
+                "cpu": "16",
+                "memory": "64Gi"
+            }
+        },
+        {
+            "machineId": "xeon-c36-m144-10",
+            "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+            "costPerHour": 2.88,
+            "allocatable": {
+                "cpu": "36",
+                "memory": "144Gi"
+            }
+        },
+        {
+            "machineId": "epyc-c40-m160-11",
+            "hardwareId": "CPU:AMD EPYC 7352 24-Core Processor,Memory:257497MiB,Cores:96",
+            "costPerHour": 3.2,
+            "allocatable": {
+                "cpu": "40",
+                "memory": "160Gi"
+            }
+        },
+        {
+            "machineId": "xeon-c44-m176-12",
+            "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+            "costPerHour": 3.52,
+            "allocatable": {
+                "cpu": "44",
+                "memory": "176Gi"
+            }
+        }
+    ],
+    "workflows": [
+        "dna-2750.yaml", "dna-2750.yaml", "dna-2750.yaml", "dna-2750.yaml", "dna-2750.yaml", "dna-2750.yaml", "dna-2750.yaml", "dna-2750.yaml", "dna-2750.yaml", "dna-2750.yaml",
+        "dna-2750.yaml", "dna-2750.yaml", "dna-2750.yaml", "dna-2750.yaml", "dna-2750.yaml", "dna-2750.yaml", "dna-2750.yaml", "dna-2750.yaml", "dna-2750.yaml", "dna-2750.yaml"
+    ],
+    
+    "constraints": {
+        "priority": "deadline",  # "cost" or "deadline" - what to optimize for
+        "deadline": 500,  # minutes - target deadline (soft constraint)
+        "costCap": 50  # dollars - target cost cap (soft constraint)
+    },
+    
+    "simulationConfig": {
+        "deltaTime": 10000,
+        "speedMultiplier": 500,
+        "schedulingInterval": 20000,
+        "schedulerPolicy": "fifo",
+        "disableMockFilesystem": True
+    },
+    
+    "optimizationConfig": {
+        "nIterations": 100,  # Total optimization iterations
+        "nInitialPoints": 10,  # Random exploration before optimization
+        "acquisitionFunc": "EI",  # Expected Improvement
+        "randomState": 42,
+        "startingPoint": None  # Optional: e.g., [1, 0, 1, 0, 0, 1, 0, 0, 1, 0]
+        # "startingPoint": [0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0]
+    },
+    
+    "outputConfig": {
+        "saveResults": True,
+        "resultsFile": "optimization_results.json",
+        "plotConvergence": True,
+        "plotFile": "convergence.png"
+    }
+}

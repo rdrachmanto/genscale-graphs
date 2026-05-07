@@ -1,0 +1,6171 @@
+{
+  "config": {
+    "apiUrl": "http://localhost:3333",
+    "availableMachines": [
+      {
+        "machineId": "k8s-tiny-1",
+        "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+        "costPerHour": 0.1,
+        "allocatable": {
+          "cpu": "4",
+          "memory": "6000Mi"
+        }
+      },
+      {
+        "machineId": "k8s-tiny-2",
+        "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+        "costPerHour": 0.1,
+        "allocatable": {
+          "cpu": "4",
+          "memory": "6000Mi"
+        }
+      },
+      {
+        "machineId": "k8s-small-1",
+        "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+        "costPerHour": 0.3,
+        "allocatable": {
+          "cpu": "6",
+          "memory": "12000Mi"
+        }
+      },
+      {
+        "machineId": "k8s-small-2",
+        "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+        "costPerHour": 0.3,
+        "allocatable": {
+          "cpu": "6",
+          "memory": "12000Mi"
+        }
+      },
+      {
+        "machineId": "k8s-medium-1",
+        "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+        "costPerHour": 0.8,
+        "allocatable": {
+          "cpu": "10",
+          "memory": "20000Mi"
+        }
+      },
+      {
+        "machineId": "k8s-medium-2",
+        "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+        "costPerHour": 0.8,
+        "allocatable": {
+          "cpu": "10",
+          "memory": "20000Mi"
+        }
+      },
+      {
+        "machineId": "k8s-medium-3",
+        "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+        "costPerHour": 0.8,
+        "allocatable": {
+          "cpu": "10",
+          "memory": "20000Mi"
+        }
+      },
+      {
+        "machineId": "k8s-large-1",
+        "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+        "costPerHour": 2.0,
+        "allocatable": {
+          "cpu": "18",
+          "memory": "40000Mi"
+        }
+      },
+      {
+        "machineId": "k8s-large-2",
+        "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+        "costPerHour": 2.0,
+        "allocatable": {
+          "cpu": "18",
+          "memory": "40000Mi"
+        }
+      }
+    ],
+    "workflows": [
+      "dna-100.yaml",
+      "dna-100.yaml",
+      "dna-100.yaml",
+      "dna-100.yaml",
+      "dna-100.yaml",
+      "dna-100.yaml"
+    ],
+    "constraints": {
+      "priority": "cost",
+      "deadline": 50,
+      "costCap": 3
+    },
+    "simulationConfig": {
+      "deltaTime": 10000,
+      "speedMultiplier": 500,
+      "schedulingInterval": 20000,
+      "schedulerPolicy": "fifo",
+      "disableMockFilesystem": true
+    },
+    "optimizationConfig": {
+      "nIterations": 100,
+      "nInitialPoints": 10,
+      "acquisitionFunc": "EI",
+      "randomState": 42,
+      "startingPoint": null
+    },
+    "outputConfig": {
+      "saveResults": true,
+      "resultsFile": "optimization_results.json",
+      "plotConvergence": true,
+      "plotFile": "convergence.png"
+    }
+  },
+  "optimization_results": {
+    "best_configuration": {
+      "iteration": 41,
+      "machine_counts": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "num_machines": 2,
+      "makespan_minutes": 50.833333333333336,
+      "total_cost": 1.948611111111111,
+      "objective_score": 2.048611111111111,
+      "meets_deadline": false,
+      "meets_cost_cap": true,
+      "cluster_config": {
+        "nodes": [
+          {
+            "name": "k8s-small-1",
+            "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+            "cpu": "6",
+            "memory": "12000Mi"
+          },
+          {
+            "name": "k8s-large-2",
+            "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+            "cpu": "18",
+            "memory": "40000Mi"
+          }
+        ]
+      },
+      "full_result": {
+        "summary": {
+          "makespan": 3050000,
+          "avgQueueTime": 48076.92307692308,
+          "avgExecutionTime": 169743.58974358975,
+          "maxQueueLength": 12,
+          "avgClusterUtilization": 38.748638344226585
+        },
+        "metadata": {
+          "startTime": 0,
+          "endTime": 3060000,
+          "deltaTime": 10000,
+          "totalWorkflows": 6,
+          "totalJobs": 78,
+          "schedulerPolicy": "fifo"
+        }
+      }
+    },
+    "all_evaluations": [
+      {
+        "iteration": 2,
+        "machine_counts": [
+          1,
+          0,
+          1,
+          1,
+          0,
+          1,
+          1,
+          1,
+          0
+        ],
+        "num_machines": 6,
+        "makespan_minutes": 47.5,
+        "total_cost": 3.404166666666667,
+        "objective_score": 3.404166666666667,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-small-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-small-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-3",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2850000,
+            "avgQueueTime": 39871.794871794875,
+            "avgExecutionTime": 169871.79487179487,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 18.45441595441597
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2860000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 3,
+        "machine_counts": [
+          0,
+          1,
+          0,
+          0,
+          1,
+          0,
+          0,
+          1,
+          0
+        ],
+        "num_machines": 3,
+        "makespan_minutes": 47.333333333333336,
+        "total_cost": 2.287777777777778,
+        "objective_score": 2.287777777777778,
+        "meets_deadline": true,
+        "meets_cost_cap": true,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-medium-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2840000,
+            "avgQueueTime": 41025.64102564102,
+            "avgExecutionTime": 170384.61538461538,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 31.19078947368421
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2850000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 4,
+        "machine_counts": [
+          1,
+          0,
+          1,
+          1,
+          0,
+          0,
+          1,
+          1,
+          0
+        ],
+        "num_machines": 5,
+        "makespan_minutes": 48.0,
+        "total_cost": 2.8000000000000003,
+        "objective_score": 2.8000000000000003,
+        "meets_deadline": true,
+        "meets_cost_cap": true,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-small-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-small-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-3",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2880000,
+            "avgQueueTime": 41923.07692307692,
+            "avgExecutionTime": 171153.84615384616,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 22.569204152249135
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2890000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 6,
+        "machine_counts": [
+          1,
+          0,
+          0,
+          1,
+          0,
+          1,
+          0,
+          0,
+          1
+        ],
+        "num_machines": 4,
+        "makespan_minutes": 47.5,
+        "total_cost": 2.533333333333333,
+        "objective_score": 2.533333333333333,
+        "meets_deadline": true,
+        "meets_cost_cap": true,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-small-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2850000,
+            "avgQueueTime": 40641.02564102564,
+            "avgExecutionTime": 169230.76923076922,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 26.224696356275327
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2860000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 7,
+        "machine_counts": [
+          1,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "num_machines": 8,
+        "makespan_minutes": 41.0,
+        "total_cost": 4.851666666666667,
+        "objective_score": 4.851666666666667,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-small-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-small-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-3",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2460000,
+            "avgQueueTime": 23205.128205128207,
+            "avgExecutionTime": 171025.64102564103,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 14.104374444554153
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2470000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 9,
+        "machine_counts": [
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "num_machines": 7,
+        "makespan_minutes": 41.166666666666664,
+        "total_cost": 4.802777777777778,
+        "objective_score": 4.802777777777778,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-small-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-small-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-3",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2470000,
+            "avgQueueTime": 24487.17948717949,
+            "avgExecutionTime": 169871.79487179487,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 14.762200165426025
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2480000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 10,
+        "machine_counts": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          0,
+          1,
+          0
+        ],
+        "num_machines": 4,
+        "makespan_minutes": 46.833333333333336,
+        "total_cost": 3.0441666666666665,
+        "objective_score": 3.0441666666666665,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-small-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2810000,
+            "avgQueueTime": 38846.153846153844,
+            "avgExecutionTime": 169743.58974358975,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 23.06737588652482
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2820000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 11,
+        "machine_counts": [
+          0,
+          1,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1
+        ],
+        "num_machines": 5,
+        "makespan_minutes": 47.166666666666664,
+        "total_cost": 3.144444444444445,
+        "objective_score": 3.144444444444445,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-small-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-3",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2830000,
+            "avgQueueTime": 40641.02564102564,
+            "avgExecutionTime": 169615.38461538462,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 20.907423708920206
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2840000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 12,
+        "machine_counts": [
+          1,
+          1,
+          0,
+          1,
+          1,
+          1,
+          0,
+          1,
+          1
+        ],
+        "num_machines": 7,
+        "makespan_minutes": 40.666666666666664,
+        "total_cost": 4.134444444444444,
+        "objective_score": 4.134444444444444,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-tiny-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-small-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2440000,
+            "avgQueueTime": 22435.897435897437,
+            "avgExecutionTime": 168205.12820512822,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 16.56093294460642
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2450000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 13,
+        "machine_counts": [
+          0,
+          1,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1
+        ],
+        "num_machines": 4,
+        "makespan_minutes": 42.0,
+        "total_cost": 3.08,
+        "objective_score": 3.08,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-small-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2520000,
+            "avgQueueTime": 25897.4358974359,
+            "avgExecutionTime": 170384.61538461538,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 24.68809073724008
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2530000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 15,
+        "machine_counts": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          1
+        ],
+        "num_machines": 4,
+        "makespan_minutes": 41.333333333333336,
+        "total_cost": 3.3755555555555556,
+        "objective_score": 3.3755555555555556,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-medium-3",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2480000,
+            "avgQueueTime": 22435.897435897437,
+            "avgExecutionTime": 172179.4871794872,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 22.98955823293166
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2490000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 16,
+        "machine_counts": [
+          1,
+          1,
+          0,
+          1,
+          1,
+          1,
+          1,
+          0,
+          1
+        ],
+        "num_machines": 7,
+        "makespan_minutes": 47.833333333333336,
+        "total_cost": 3.9063888888888894,
+        "objective_score": 3.9063888888888894,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-tiny-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-small-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-3",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2870000,
+            "avgQueueTime": 37564.10256410256,
+            "avgExecutionTime": 167820.5128205128,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 15.782930107526889
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2880000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 17,
+        "machine_counts": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          0,
+          0,
+          1
+        ],
+        "num_machines": 3,
+        "makespan_minutes": 47.666666666666664,
+        "total_cost": 2.86,
+        "objective_score": 2.86,
+        "meets_deadline": true,
+        "meets_cost_cap": true,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-medium-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2860000,
+            "avgQueueTime": 40897.4358974359,
+            "avgExecutionTime": 168846.15384615384,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 25.982028241335072
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2870000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 18,
+        "machine_counts": [
+          0,
+          1,
+          1,
+          1,
+          0,
+          1,
+          0,
+          0,
+          1
+        ],
+        "num_machines": 5,
+        "makespan_minutes": 47.666666666666664,
+        "total_cost": 2.7805555555555554,
+        "objective_score": 2.7805555555555554,
+        "meets_deadline": true,
+        "meets_cost_cap": true,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-small-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-small-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2860000,
+            "avgQueueTime": 40641.02564102564,
+            "avgExecutionTime": 170000,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 22.45644599303136
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2870000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 19,
+        "machine_counts": [
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          1,
+          0,
+          1
+        ],
+        "num_machines": 3,
+        "makespan_minutes": 48.666666666666664,
+        "total_cost": 2.5144444444444445,
+        "objective_score": 2.5144444444444445,
+        "meets_deadline": true,
+        "meets_cost_cap": true,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-small-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-3",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2920000,
+            "avgQueueTime": 41538.46153846154,
+            "avgExecutionTime": 170641.02564102566,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 28.609716924312302
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2930000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 20,
+        "machine_counts": [
+          1,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "num_machines": 3,
+        "makespan_minutes": 52.666666666666664,
+        "total_cost": 1.931111111111111,
+        "objective_score": 2.251111111111111,
+        "meets_deadline": false,
+        "meets_cost_cap": true,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-tiny-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 3160000,
+            "avgQueueTime": 52820.51282051282,
+            "avgExecutionTime": 168974.35897435897,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 34.66027663188543
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 3170000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 21,
+        "machine_counts": [
+          1,
+          0,
+          1,
+          0,
+          0,
+          1,
+          1,
+          0,
+          1
+        ],
+        "num_machines": 5,
+        "makespan_minutes": 46.5,
+        "total_cost": 3.1000000000000005,
+        "objective_score": 3.1000000000000005,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-small-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-3",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2790000,
+            "avgQueueTime": 39487.179487179485,
+            "avgExecutionTime": 168974.35897435897,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 21.132440476190435
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2800000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 22,
+        "machine_counts": [
+          1,
+          0,
+          1,
+          0,
+          1,
+          1,
+          0,
+          1,
+          1
+        ],
+        "num_machines": 6,
+        "makespan_minutes": 40.5,
+        "total_cost": 4.050000000000001,
+        "objective_score": 4.050000000000001,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-small-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2430000,
+            "avgQueueTime": 23461.53846153846,
+            "avgExecutionTime": 169871.79487179487,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 17.73907103825137
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2440000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 23,
+        "machine_counts": [
+          1,
+          1,
+          1,
+          1,
+          0,
+          1,
+          1,
+          1,
+          0
+        ],
+        "num_machines": 7,
+        "makespan_minutes": 46.166666666666664,
+        "total_cost": 3.3855555555555554,
+        "objective_score": 3.3855555555555554,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-tiny-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-small-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-small-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-3",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2770000,
+            "avgQueueTime": 36538.46153846154,
+            "avgExecutionTime": 168717.94871794872,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 17.580625155048416
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2780000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 24,
+        "machine_counts": [
+          1,
+          0,
+          1,
+          1,
+          1,
+          0,
+          0,
+          0,
+          1
+        ],
+        "num_machines": 5,
+        "makespan_minutes": 47.666666666666664,
+        "total_cost": 2.7805555555555554,
+        "objective_score": 2.7805555555555554,
+        "meets_deadline": true,
+        "meets_cost_cap": true,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-small-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-small-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2860000,
+            "avgQueueTime": 39743.58974358974,
+            "avgExecutionTime": 169358.97435897434,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 22.430313588850176
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2870000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 25,
+        "machine_counts": [
+          1,
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "num_machines": 6,
+        "makespan_minutes": 41.0,
+        "total_cost": 4.441666666666666,
+        "objective_score": 4.441666666666666,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-medium-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-3",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2460000,
+            "avgQueueTime": 23589.74358974359,
+            "avgExecutionTime": 171282.05128205128,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 16.611336032388653
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2470000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 26,
+        "machine_counts": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          0
+        ],
+        "num_machines": 3,
+        "makespan_minutes": 47.333333333333336,
+        "total_cost": 2.8400000000000003,
+        "objective_score": 2.8400000000000003,
+        "meets_deadline": true,
+        "meets_cost_cap": true,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-medium-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-3",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2840000,
+            "avgQueueTime": 36794.8717948718,
+            "avgExecutionTime": 170128.20512820513,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 26.276084949215115
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2850000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 27,
+        "machine_counts": [
+          1,
+          0,
+          1,
+          0,
+          1,
+          1,
+          0,
+          1,
+          0
+        ],
+        "num_machines": 5,
+        "makespan_minutes": 47.833333333333336,
+        "total_cost": 3.188888888888889,
+        "objective_score": 3.188888888888889,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-small-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2870000,
+            "avgQueueTime": 41025.64102564102,
+            "avgExecutionTime": 170384.61538461538,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 20.69661458333334
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2880000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 28,
+        "machine_counts": [
+          0,
+          0,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          1
+        ],
+        "num_machines": 4,
+        "makespan_minutes": 40.666666666666664,
+        "total_cost": 3.456666666666666,
+        "objective_score": 3.456666666666666,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-small-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2440000,
+            "avgQueueTime": 23717.94871794872,
+            "avgExecutionTime": 168461.53846153847,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 22.25039246467815
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2450000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 29,
+        "machine_counts": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          0,
+          0,
+          1,
+          1
+        ],
+        "num_machines": 4,
+        "makespan_minutes": 41.166666666666664,
+        "total_cost": 3.4991666666666665,
+        "objective_score": 3.4991666666666665,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-small-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2470000,
+            "avgQueueTime": 22692.30769230769,
+            "avgExecutionTime": 170641.02564102566,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 22.228598014888306
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2480000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 30,
+        "machine_counts": [
+          1,
+          1,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1,
+          0
+        ],
+        "num_machines": 4,
+        "makespan_minutes": 51.5,
+        "total_cost": 2.145833333333333,
+        "objective_score": 2.325833333333333,
+        "meets_deadline": false,
+        "meets_cost_cap": true,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-tiny-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-small-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 3090000,
+            "avgQueueTime": 48333.333333333336,
+            "avgExecutionTime": 170000,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 28.697580645161292
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 3100000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 31,
+        "machine_counts": [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0
+        ],
+        "num_machines": 2,
+        "makespan_minutes": 52.666666666666664,
+        "total_cost": 2.0188888888888887,
+        "objective_score": 2.3388888888888886,
+        "meets_deadline": false,
+        "meets_cost_cap": true,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-small-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 3160000,
+            "avgQueueTime": 52564.10256410256,
+            "avgExecutionTime": 170512.8205128205,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 37.80888538380654
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 3170000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 32,
+        "machine_counts": [
+          0,
+          1,
+          1,
+          1,
+          1,
+          0,
+          1,
+          1,
+          0
+        ],
+        "num_machines": 6,
+        "makespan_minutes": 46.833333333333336,
+        "total_cost": 3.3563888888888886,
+        "objective_score": 3.3563888888888886,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-small-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-small-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-3",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2810000,
+            "avgQueueTime": 36025.64102564102,
+            "avgExecutionTime": 170128.20512820513,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 18.84620436038877
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2820000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 33,
+        "machine_counts": [
+          1,
+          0,
+          0,
+          0,
+          1,
+          0,
+          1,
+          1,
+          0
+        ],
+        "num_machines": 4,
+        "makespan_minutes": 46.166666666666664,
+        "total_cost": 2.8469444444444445,
+        "objective_score": 2.8469444444444445,
+        "meets_deadline": true,
+        "meets_cost_cap": true,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-medium-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-3",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2770000,
+            "avgQueueTime": 36282.05128205128,
+            "avgExecutionTime": 169487.1794871795,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 24.43816375471048
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2780000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 34,
+        "machine_counts": [
+          0,
+          1,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "num_machines": 6,
+        "makespan_minutes": 41.0,
+        "total_cost": 4.441666666666666,
+        "objective_score": 4.441666666666666,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-medium-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-3",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2460000,
+            "avgQueueTime": 23076.923076923078,
+            "avgExecutionTime": 170000,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 16.585887796414124
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2470000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 35,
+        "machine_counts": [
+          1,
+          1,
+          1,
+          1,
+          0,
+          0,
+          1,
+          1,
+          1
+        ],
+        "num_machines": 7,
+        "makespan_minutes": 41.833333333333336,
+        "total_cost": 3.9044444444444446,
+        "objective_score": 3.9044444444444446,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-tiny-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-small-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-small-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-3",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2510000,
+            "avgQueueTime": 23974.358974358973,
+            "avgExecutionTime": 170897.4358974359,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 17.242063492063487
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2520000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 36,
+        "machine_counts": [
+          1,
+          1,
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          0
+        ],
+        "num_machines": 5,
+        "makespan_minutes": 46.666666666666664,
+        "total_cost": 2.9555555555555557,
+        "objective_score": 2.9555555555555557,
+        "meets_deadline": true,
+        "meets_cost_cap": true,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-tiny-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-medium-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-3",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2800000,
+            "avgQueueTime": 36410.256410256414,
+            "avgExecutionTime": 169487.1794871795,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 22.142967662076444
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2810000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 37,
+        "machine_counts": [
+          0,
+          1,
+          1,
+          0,
+          1,
+          0,
+          1,
+          1,
+          1
+        ],
+        "num_machines": 6,
+        "makespan_minutes": 41.0,
+        "total_cost": 4.1,
+        "objective_score": 4.1,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-small-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-3",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2460000,
+            "avgQueueTime": 23717.94871794872,
+            "avgExecutionTime": 171410.2564102564,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 17.557354925775975
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2470000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 38,
+        "machine_counts": [
+          0,
+          1,
+          1,
+          0,
+          0,
+          1,
+          0,
+          1,
+          0
+        ],
+        "num_machines": 4,
+        "makespan_minutes": 48.166666666666664,
+        "total_cost": 2.568888888888889,
+        "objective_score": 2.568888888888889,
+        "meets_deadline": true,
+        "meets_cost_cap": true,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-small-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2890000,
+            "avgQueueTime": 40000,
+            "avgExecutionTime": 170769.23076923078,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 25.872958257713265
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2900000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 39,
+        "machine_counts": [
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          1,
+          1,
+          1
+        ],
+        "num_machines": 6,
+        "makespan_minutes": 40.666666666666664,
+        "total_cost": 4.066666666666666,
+        "objective_score": 4.066666666666666,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-small-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-3",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2440000,
+            "avgQueueTime": 23717.94871794872,
+            "avgExecutionTime": 170128.20512820513,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 17.680272108843546
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2450000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 40,
+        "machine_counts": [
+          0,
+          0,
+          1,
+          0,
+          0,
+          1,
+          0,
+          1,
+          1
+        ],
+        "num_machines": 4,
+        "makespan_minutes": 41.166666666666664,
+        "total_cost": 3.4991666666666665,
+        "objective_score": 3.4991666666666665,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-small-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2470000,
+            "avgQueueTime": 22820.51282051282,
+            "avgExecutionTime": 170000,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 22.160359801488767
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2480000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 41,
+        "machine_counts": [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "num_machines": 2,
+        "makespan_minutes": 50.833333333333336,
+        "total_cost": 1.948611111111111,
+        "objective_score": 2.048611111111111,
+        "meets_deadline": false,
+        "meets_cost_cap": true,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-small-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 3050000,
+            "avgQueueTime": 48076.92307692308,
+            "avgExecutionTime": 169743.58974358975,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 38.748638344226585
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 3060000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 42,
+        "machine_counts": [
+          0,
+          1,
+          0,
+          1,
+          1,
+          0,
+          0,
+          0,
+          1
+        ],
+        "num_machines": 4,
+        "makespan_minutes": 47.5,
+        "total_cost": 2.533333333333333,
+        "objective_score": 2.533333333333333,
+        "meets_deadline": true,
+        "meets_cost_cap": true,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-small-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2850000,
+            "avgQueueTime": 41282.05128205128,
+            "avgExecutionTime": 170769.23076923078,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 26.487854251012195
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2860000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 43,
+        "machine_counts": [
+          1,
+          1,
+          1,
+          1,
+          0,
+          0,
+          1,
+          0,
+          1
+        ],
+        "num_machines": 6,
+        "makespan_minutes": 48.0,
+        "total_cost": 2.8800000000000003,
+        "objective_score": 2.8800000000000003,
+        "meets_deadline": true,
+        "meets_cost_cap": true,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-tiny-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-small-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-small-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-3",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2880000,
+            "avgQueueTime": 39743.58974358974,
+            "avgExecutionTime": 170897.4358974359,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 20.72808535178775
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2890000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 44,
+        "machine_counts": [
+          0,
+          1,
+          0,
+          0,
+          0,
+          1,
+          1,
+          0,
+          1
+        ],
+        "num_machines": 4,
+        "makespan_minutes": 47.833333333333336,
+        "total_cost": 2.9497222222222224,
+        "objective_score": 2.9497222222222224,
+        "meets_deadline": true,
+        "meets_cost_cap": true,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-medium-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-3",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2870000,
+            "avgQueueTime": 39871.794871794875,
+            "avgExecutionTime": 170256.41025641025,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 23.65327380952381
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2880000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 45,
+        "machine_counts": [
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          1
+        ],
+        "num_machines": 6,
+        "makespan_minutes": 46.5,
+        "total_cost": 3.875,
+        "objective_score": 3.875,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-small-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-small-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-3",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2790000,
+            "avgQueueTime": 38589.743589743586,
+            "avgExecutionTime": 169487.1794871795,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 16.92559523809525
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2800000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 46,
+        "machine_counts": [
+          1,
+          0,
+          0,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1
+        ],
+        "num_machines": 4,
+        "makespan_minutes": 47.166666666666664,
+        "total_cost": 2.908611111111111,
+        "objective_score": 2.908611111111111,
+        "meets_deadline": true,
+        "meets_cost_cap": true,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-medium-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-3",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2830000,
+            "avgQueueTime": 37692.307692307695,
+            "avgExecutionTime": 169230.76923076922,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 23.921864520456054
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2840000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 47,
+        "machine_counts": [
+          1,
+          1,
+          1,
+          0,
+          1,
+          1,
+          0,
+          0,
+          1
+        ],
+        "num_machines": 6,
+        "makespan_minutes": 48.5,
+        "total_cost": 3.314166666666667,
+        "objective_score": 3.314166666666667,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-tiny-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-small-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2910000,
+            "avgQueueTime": 39487.179487179485,
+            "avgExecutionTime": 172564.10256410256,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 19.06743940990513
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2920000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 48,
+        "machine_counts": [
+          1,
+          1,
+          1,
+          0,
+          1,
+          1,
+          1,
+          1,
+          0
+        ],
+        "num_machines": 7,
+        "makespan_minutes": 47.166666666666664,
+        "total_cost": 3.8519444444444444,
+        "objective_score": 3.8519444444444444,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-tiny-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-small-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-3",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2830000,
+            "avgQueueTime": 37692.307692307695,
+            "avgExecutionTime": 169871.79487179487,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 16.19263970922309
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2840000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 49,
+        "machine_counts": [
+          1,
+          1,
+          0,
+          1,
+          1,
+          0,
+          0,
+          1,
+          1
+        ],
+        "num_machines": 6,
+        "makespan_minutes": 41.166666666666664,
+        "total_cost": 3.636388888888889,
+        "objective_score": 3.636388888888889,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-tiny-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-small-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2470000,
+            "avgQueueTime": 23205.128205128207,
+            "avgExecutionTime": 170000,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 19.139112903225815
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2480000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 50,
+        "machine_counts": [
+          1,
+          1,
+          1,
+          0,
+          0,
+          1,
+          0,
+          1,
+          1
+        ],
+        "num_machines": 6,
+        "makespan_minutes": 41.166666666666664,
+        "total_cost": 3.636388888888889,
+        "objective_score": 3.636388888888889,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-tiny-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-small-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2470000,
+            "avgQueueTime": 23717.94871794872,
+            "avgExecutionTime": 172307.6923076923,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 19.331317204301065
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2480000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 51,
+        "machine_counts": [
+          1,
+          1,
+          0,
+          1,
+          1,
+          1,
+          0,
+          1,
+          0
+        ],
+        "num_machines": 6,
+        "makespan_minutes": 48.0,
+        "total_cost": 3.2800000000000002,
+        "objective_score": 3.2800000000000002,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-tiny-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-small-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2880000,
+            "avgQueueTime": 40256.41025641026,
+            "avgExecutionTime": 168333.33333333334,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 18.899387809422386
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2890000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 52,
+        "machine_counts": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0
+        ],
+        "num_machines": 5,
+        "makespan_minutes": 46.166666666666664,
+        "total_cost": 3.6163888888888884,
+        "objective_score": 3.6163888888888884,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-small-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-3",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2770000,
+            "avgQueueTime": 36794.8717948718,
+            "avgExecutionTime": 169615.38461538462,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 18.956168398614473
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2780000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 53,
+        "machine_counts": [
+          1,
+          0,
+          1,
+          1,
+          0,
+          0,
+          1,
+          1,
+          1
+        ],
+        "num_machines": 6,
+        "makespan_minutes": 41.833333333333336,
+        "total_cost": 3.834722222222223,
+        "objective_score": 3.834722222222223,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-small-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-small-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-3",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2510000,
+            "avgQueueTime": 23333.333333333332,
+            "avgExecutionTime": 170512.8205128205,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 18.26292882744492
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2520000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 54,
+        "machine_counts": [
+          0,
+          1,
+          0,
+          1,
+          0,
+          0,
+          1,
+          1,
+          0
+        ],
+        "num_machines": 4,
+        "makespan_minutes": 47.5,
+        "total_cost": 2.533333333333333,
+        "objective_score": 2.533333333333333,
+        "meets_deadline": true,
+        "meets_cost_cap": true,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-small-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-3",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2850000,
+            "avgQueueTime": 40769.230769230766,
+            "avgExecutionTime": 169743.58974358975,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 26.234817813765197
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2860000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 55,
+        "machine_counts": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0
+        ],
+        "num_machines": 2,
+        "makespan_minutes": 52.0,
+        "total_cost": 1.82,
+        "objective_score": 2.06,
+        "meets_deadline": false,
+        "meets_cost_cap": true,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 3120000,
+            "avgQueueTime": 52051.282051282054,
+            "avgExecutionTime": 170512.8205128205,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 41.74121405750799
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 3130000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 56,
+        "machine_counts": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          1,
+          1
+        ],
+        "num_machines": 3,
+        "makespan_minutes": 40.833333333333336,
+        "total_cost": 3.2666666666666666,
+        "objective_score": 3.2666666666666666,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-medium-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2450000,
+            "avgQueueTime": 22307.69230769231,
+            "avgExecutionTime": 169743.58974358975,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 25.38087663485331
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2460000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 57,
+        "machine_counts": [
+          1,
+          0,
+          1,
+          1,
+          1,
+          0,
+          0,
+          1,
+          0
+        ],
+        "num_machines": 5,
+        "makespan_minutes": 48.166666666666664,
+        "total_cost": 2.809722222222222,
+        "objective_score": 2.809722222222222,
+        "meets_deadline": true,
+        "meets_cost_cap": true,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-small-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-small-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2890000,
+            "avgQueueTime": 41025.64102564102,
+            "avgExecutionTime": 169871.79487179487,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 22.43103448275862
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2900000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 58,
+        "machine_counts": [
+          0,
+          1,
+          1,
+          0,
+          1,
+          0,
+          1,
+          1,
+          0
+        ],
+        "num_machines": 5,
+        "makespan_minutes": 47.666666666666664,
+        "total_cost": 3.177777777777778,
+        "objective_score": 3.177777777777778,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-small-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-3",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2860000,
+            "avgQueueTime": 37692.307692307695,
+            "avgExecutionTime": 170641.02564102566,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 20.728803716608564
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2870000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 59,
+        "machine_counts": [
+          0,
+          1,
+          1,
+          1,
+          1,
+          0,
+          0,
+          1,
+          1
+        ],
+        "num_machines": 6,
+        "makespan_minutes": 41.5,
+        "total_cost": 3.8041666666666667,
+        "objective_score": 3.8041666666666667,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-small-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-small-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2490000,
+            "avgQueueTime": 23333.333333333332,
+            "avgExecutionTime": 171025.64102564103,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 18.536774193548354
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2500000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 60,
+        "machine_counts": [
+          0,
+          1,
+          1,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0
+        ],
+        "num_machines": 5,
+        "makespan_minutes": 47.166666666666664,
+        "total_cost": 2.751388888888889,
+        "objective_score": 2.751388888888889,
+        "meets_deadline": true,
+        "meets_cost_cap": true,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-small-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-small-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2830000,
+            "avgQueueTime": 38846.153846153844,
+            "avgExecutionTime": 169358.97435897434,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 22.640845070422536
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2840000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 61,
+        "machine_counts": [
+          1,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          1
+        ],
+        "num_machines": 5,
+        "makespan_minutes": 41.333333333333336,
+        "total_cost": 3.444444444444444,
+        "objective_score": 3.444444444444444,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-tiny-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-medium-3",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2480000,
+            "avgQueueTime": 23846.153846153848,
+            "avgExecutionTime": 170769.23076923078,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 21.294808865089973
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2490000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 62,
+        "machine_counts": [
+          0,
+          1,
+          0,
+          0,
+          1,
+          1,
+          0,
+          0,
+          1
+        ],
+        "num_machines": 4,
+        "makespan_minutes": 46.666666666666664,
+        "total_cost": 2.8777777777777778,
+        "objective_score": 2.8777777777777778,
+        "meets_deadline": true,
+        "meets_cost_cap": true,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-medium-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2800000,
+            "avgQueueTime": 38589.743589743586,
+            "avgExecutionTime": 171025.64102564103,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 24.242501270970997
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2810000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 63,
+        "machine_counts": [
+          0,
+          0,
+          0,
+          1,
+          0,
+          1,
+          1,
+          0,
+          1
+        ],
+        "num_machines": 4,
+        "makespan_minutes": 46.333333333333336,
+        "total_cost": 3.0116666666666667,
+        "objective_score": 3.0116666666666667,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-small-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-3",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2780000,
+            "avgQueueTime": 35384.61538461538,
+            "avgExecutionTime": 168717.94871794872,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 23.288530465949822
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2790000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 64,
+        "machine_counts": [
+          1,
+          0,
+          1,
+          0,
+          0,
+          1,
+          0,
+          0,
+          1
+        ],
+        "num_machines": 4,
+        "makespan_minutes": 47.166666666666664,
+        "total_cost": 2.5155555555555553,
+        "objective_score": 2.5155555555555553,
+        "meets_deadline": true,
+        "meets_cost_cap": true,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-small-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2830000,
+            "avgQueueTime": 40256.41025641026,
+            "avgExecutionTime": 170000,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 26.3380281690141
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2840000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 65,
+        "machine_counts": [
+          0,
+          0,
+          1,
+          1,
+          1,
+          0,
+          0,
+          0,
+          1
+        ],
+        "num_machines": 4,
+        "makespan_minutes": 47.5,
+        "total_cost": 2.6916666666666664,
+        "objective_score": 2.6916666666666664,
+        "meets_deadline": true,
+        "meets_cost_cap": true,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-small-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-small-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2850000,
+            "avgQueueTime": 41282.05128205128,
+            "avgExecutionTime": 170769.23076923078,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 25.048076923076923
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2860000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 66,
+        "machine_counts": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          1
+        ],
+        "num_machines": 8,
+        "makespan_minutes": 47.5,
+        "total_cost": 4.116666666666666,
+        "objective_score": 4.116666666666666,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-tiny-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-small-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-small-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-3",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2850000,
+            "avgQueueTime": 36923.07692307692,
+            "avgExecutionTime": 168974.35897435897,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 14.643665158370991
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2860000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 67,
+        "machine_counts": [
+          0,
+          1,
+          1,
+          0,
+          0,
+          0,
+          1,
+          0,
+          1
+        ],
+        "num_machines": 4,
+        "makespan_minutes": 47.166666666666664,
+        "total_cost": 2.5155555555555553,
+        "objective_score": 2.5155555555555553,
+        "meets_deadline": true,
+        "meets_cost_cap": true,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-small-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-3",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2830000,
+            "avgQueueTime": 40512.820512820515,
+            "avgExecutionTime": 169743.58974358975,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 26.36860637509268
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2840000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 68,
+        "machine_counts": [
+          1,
+          1,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "num_machines": 4,
+        "makespan_minutes": 52.666666666666664,
+        "total_cost": 2.1944444444444446,
+        "objective_score": 2.5144444444444445,
+        "meets_deadline": false,
+        "meets_cost_cap": true,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-tiny-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-small-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 3160000,
+            "avgQueueTime": 49743.58974358974,
+            "avgExecutionTime": 171153.84615384616,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 28.248225552050474
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 3170000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 70,
+        "machine_counts": [
+          1,
+          1,
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          0
+        ],
+        "num_machines": 5,
+        "makespan_minutes": 48.0,
+        "total_cost": 3.0400000000000005,
+        "objective_score": 3.0400000000000005,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-tiny-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-medium-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-3",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2880000,
+            "avgQueueTime": 39743.58974358974,
+            "avgExecutionTime": 170384.61538461538,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 21.48036708289458
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2890000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 71,
+        "machine_counts": [
+          1,
+          0,
+          1,
+          1,
+          0,
+          1,
+          0,
+          0,
+          1
+        ],
+        "num_machines": 5,
+        "makespan_minutes": 47.0,
+        "total_cost": 2.7416666666666667,
+        "objective_score": 2.7416666666666667,
+        "meets_deadline": true,
+        "meets_cost_cap": true,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-small-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-small-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2820000,
+            "avgQueueTime": 40512.820512820515,
+            "avgExecutionTime": 169358.97435897434,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 22.773851590106005
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2830000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 72,
+        "machine_counts": [
+          1,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1,
+          1
+        ],
+        "num_machines": 4,
+        "makespan_minutes": 42.5,
+        "total_cost": 3.116666666666667,
+        "objective_score": 3.116666666666667,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-small-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2550000,
+            "avgQueueTime": 26410.25641025641,
+            "avgExecutionTime": 170641.02564102566,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 24.380095108695652
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2560000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 73,
+        "machine_counts": [
+          1,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1,
+          1,
+          1
+        ],
+        "num_machines": 5,
+        "makespan_minutes": 40.333333333333336,
+        "total_cost": 3.4955555555555557,
+        "objective_score": 3.4955555555555557,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-small-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-3",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2420000,
+            "avgQueueTime": 22820.51282051282,
+            "avgExecutionTime": 170000,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 20.968547912992328
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2430000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 74,
+        "machine_counts": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          0,
+          1,
+          0
+        ],
+        "num_machines": 6,
+        "makespan_minutes": 47.0,
+        "total_cost": 2.8200000000000003,
+        "objective_score": 2.8200000000000003,
+        "meets_deadline": true,
+        "meets_cost_cap": true,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-tiny-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-small-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-small-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2820000,
+            "avgQueueTime": 40128.205128205125,
+            "avgExecutionTime": 170512.8205128205,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 20.97320376914014
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2830000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 75,
+        "machine_counts": [
+          1,
+          0,
+          0,
+          1,
+          0,
+          1,
+          1,
+          1,
+          0
+        ],
+        "num_machines": 5,
+        "makespan_minutes": 47.333333333333336,
+        "total_cost": 3.155555555555556,
+        "objective_score": 3.155555555555556,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-small-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-3",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2840000,
+            "avgQueueTime": 38333.333333333336,
+            "avgExecutionTime": 169871.79487179487,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 20.80190058479532
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2850000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 77,
+        "machine_counts": [
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          1,
+          0
+        ],
+        "num_machines": 6,
+        "makespan_minutes": 46.5,
+        "total_cost": 3.3325000000000005,
+        "objective_score": 3.3325000000000005,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-small-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-small-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2790000,
+            "avgQueueTime": 38333.333333333336,
+            "avgExecutionTime": 168076.92307692306,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 18.653439153439177
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2800000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 79,
+        "machine_counts": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0
+        ],
+        "num_machines": 5,
+        "makespan_minutes": 46.666666666666664,
+        "total_cost": 3.655555555555556,
+        "objective_score": 3.655555555555556,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-small-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-3",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2800000,
+            "avgQueueTime": 37307.692307692305,
+            "avgExecutionTime": 169871.79487179487,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 18.710293923817073
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2810000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 80,
+        "machine_counts": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          1,
+          0
+        ],
+        "num_machines": 2,
+        "makespan_minutes": 46.5,
+        "total_cost": 2.17,
+        "objective_score": 2.17,
+        "meets_deadline": true,
+        "meets_cost_cap": true,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-medium-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2790000,
+            "avgQueueTime": 39102.5641025641,
+            "avgExecutionTime": 169743.58974358975,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 36.39540816326532
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2800000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 82,
+        "machine_counts": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          0,
+          1,
+          1
+        ],
+        "num_machines": 4,
+        "makespan_minutes": 41.333333333333336,
+        "total_cost": 3.8577777777777778,
+        "objective_score": 3.8577777777777778,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-medium-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2480000,
+            "avgQueueTime": 23974.358974358973,
+            "avgExecutionTime": 171410.2564102564,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 20.644721744119295
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2490000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 84,
+        "machine_counts": [
+          1,
+          1,
+          0,
+          1,
+          1,
+          0,
+          1,
+          1,
+          0
+        ],
+        "num_machines": 6,
+        "makespan_minutes": 47.666666666666664,
+        "total_cost": 3.2572222222222225,
+        "objective_score": 3.2572222222222225,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-tiny-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-small-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-3",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2860000,
+            "avgQueueTime": 38974.35897435898,
+            "avgExecutionTime": 169358.97435897434,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 19.1416510318949
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2870000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 85,
+        "machine_counts": [
+          1,
+          1,
+          1,
+          1,
+          0,
+          1,
+          1,
+          1,
+          1
+        ],
+        "num_machines": 8,
+        "makespan_minutes": 41.0,
+        "total_cost": 4.373333333333333,
+        "objective_score": 4.373333333333333,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-tiny-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-small-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-small-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-3",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2460000,
+            "avgQueueTime": 23333.333333333332,
+            "avgExecutionTime": 168461.53846153847,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 15.170999360750068
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2470000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 86,
+        "machine_counts": [
+          1,
+          0,
+          0,
+          0,
+          1,
+          0,
+          1,
+          1,
+          0
+        ],
+        "num_machines": 4,
+        "makespan_minutes": 47.333333333333336,
+        "total_cost": 2.918888888888889,
+        "objective_score": 2.918888888888889,
+        "meets_deadline": true,
+        "meets_cost_cap": true,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-medium-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-3",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2840000,
+            "avgQueueTime": 39487.179487179485,
+            "avgExecutionTime": 172307.6923076923,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 24.159565580618178
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2850000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 87,
+        "machine_counts": [
+          1,
+          1,
+          0,
+          0,
+          1,
+          0,
+          0,
+          1,
+          1
+        ],
+        "num_machines": 5,
+        "makespan_minutes": 41.666666666666664,
+        "total_cost": 3.472222222222222,
+        "objective_score": 3.472222222222222,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-tiny-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-medium-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2500000,
+            "avgQueueTime": 24743.589743589742,
+            "avgExecutionTime": 171538.46153846153,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 21.20628596724211
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2510000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 90,
+        "machine_counts": [
+          1,
+          1,
+          0,
+          0,
+          1,
+          1,
+          0,
+          1,
+          1
+        ],
+        "num_machines": 6,
+        "makespan_minutes": 40.666666666666664,
+        "total_cost": 3.93111111111111,
+        "objective_score": 3.93111111111111,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-tiny-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-medium-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2440000,
+            "avgQueueTime": 23461.53846153846,
+            "avgExecutionTime": 169230.76923076922,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 18.120535714285715
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2450000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 91,
+        "machine_counts": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          1,
+          0
+        ],
+        "num_machines": 3,
+        "makespan_minutes": 47.833333333333336,
+        "total_cost": 2.311944444444445,
+        "objective_score": 2.311944444444445,
+        "meets_deadline": true,
+        "meets_cost_cap": true,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-medium-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2870000,
+            "avgQueueTime": 41153.846153846156,
+            "avgExecutionTime": 170769.23076923078,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 31.212022569444443
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2880000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 92,
+        "machine_counts": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          0
+        ],
+        "num_machines": 4,
+        "makespan_minutes": 47.5,
+        "total_cost": 3.4833333333333334,
+        "objective_score": 3.4833333333333334,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-medium-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-3",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2850000,
+            "avgQueueTime": 37948.717948717946,
+            "avgExecutionTime": 170128.20512820513,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 20.84935897435898
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2860000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 96,
+        "machine_counts": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "num_machines": 5,
+        "makespan_minutes": 40.5,
+        "total_cost": 4.32,
+        "objective_score": 4.32,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-medium-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-3",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2430000,
+            "avgQueueTime": 22820.51282051282,
+            "avgExecutionTime": 169230.76923076922,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 17.718579234972694
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2440000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 97,
+        "machine_counts": [
+          0,
+          1,
+          0,
+          1,
+          1,
+          1,
+          0,
+          1,
+          0
+        ],
+        "num_machines": 5,
+        "makespan_minutes": 47.666666666666664,
+        "total_cost": 3.177777777777778,
+        "objective_score": 3.177777777777778,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-small-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-medium-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2860000,
+            "avgQueueTime": 41410.256410256414,
+            "avgExecutionTime": 169487.1794871795,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 20.760743321718916
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2870000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 98,
+        "machine_counts": [
+          1,
+          1,
+          0,
+          0,
+          0,
+          1,
+          0,
+          1,
+          1
+        ],
+        "num_machines": 5,
+        "makespan_minutes": 40.833333333333336,
+        "total_cost": 3.402777777777778,
+        "objective_score": 3.402777777777778,
+        "meets_deadline": true,
+        "meets_cost_cap": false,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-tiny-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-medium-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2450000,
+            "avgQueueTime": 22948.71794871795,
+            "avgExecutionTime": 170769.23076923078,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 21.521379102679873
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2460000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      },
+      {
+        "iteration": 100,
+        "machine_counts": [
+          1,
+          1,
+          0,
+          1,
+          1,
+          0,
+          0,
+          0,
+          1
+        ],
+        "num_machines": 5,
+        "makespan_minutes": 47.833333333333336,
+        "total_cost": 2.6308333333333334,
+        "objective_score": 2.6308333333333334,
+        "meets_deadline": true,
+        "meets_cost_cap": true,
+        "cluster_config": {
+          "nodes": [
+            {
+              "name": "k8s-tiny-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-tiny-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "4",
+              "memory": "6000Mi"
+            },
+            {
+              "name": "k8s-small-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "6",
+              "memory": "12000Mi"
+            },
+            {
+              "name": "k8s-medium-1",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "10",
+              "memory": "20000Mi"
+            },
+            {
+              "name": "k8s-large-2",
+              "hardwareId": "CPU:Intel(R) Xeon(R) Gold 6240R,Memory:192002MiB,Cores:96",
+              "cpu": "18",
+              "memory": "40000Mi"
+            }
+          ]
+        },
+        "full_result": {
+          "summary": {
+            "makespan": 2870000,
+            "avgQueueTime": 40000,
+            "avgExecutionTime": 171153.84615384616,
+            "maxQueueLength": 12,
+            "avgClusterUtilization": 23.707837301587276
+          },
+          "metadata": {
+            "startTime": 0,
+            "endTime": 2880000,
+            "deltaTime": 10000,
+            "totalWorkflows": 6,
+            "totalJobs": 78,
+            "schedulerPolicy": "fifo"
+          }
+        }
+      }
+    ],
+    "summary_stats": {
+      "total_evaluations": 85,
+      "successful_evaluations": 85,
+      "failed_evaluations": 0,
+      "makespan_range": [
+        40.333333333333336,
+        52.666666666666664
+      ],
+      "cost_range": [
+        1.82,
+        4.851666666666667
+      ],
+      "configurations_meeting_deadline": 79,
+      "configurations_meeting_cost_cap": 34
+    },
+    "start_time": "2026-02-26T22:06:18.249588",
+    "end_time": "2026-02-26T22:09:33.223839",
+    "duration_seconds": 194.974253
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "vm_prefix": "k8s",
+  "vm_user": "ubuntu",
+  "vm_password": "k8spass123",
+
+  "image_url": "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img",
+  "os_variant": "ubuntu22.04",
+
+  "network": {
+    "name": "k8snet",
+    "bridge": "virbr-k8s",
+    "subnet": "10.10.10",
+    "pod_cidr": "10.244.0.0/16"
+  },
+
+  "kubernetes_version": "1.29",
+
+  "vms": [
+    {
+      "name": "cp",
+      "role": "control_plane",
+      "vcpus": 8,
+      "ram_mb": 8192,
+      "disk_gb": 180,
+      "count": 1
+    },
+    {
+      "name": "tiny",
+      "role": "worker",
+      "vcpus": 4,
+      "ram_mb": 8192,
+      "disk_gb": 20,
+      "count": 4
+    },
+    {
+      "name": "small",
+      "role": "worker",
+      "vcpus": 8,
+      "ram_mb": 16384,
+      "disk_gb": 20,
+      "count": 3
+    },
+    {
+      "name": "medium",
+      "role": "worker",
+      "vcpus": 16,
+      "ram_mb": 32768,
+      "disk_gb": 20,
+      "count": 2
+    },
+    {
+      "name": "large",
+      "role": "worker",
+      "vcpus": 32,
+      "ram_mb": 65536,
+      "disk_gb": 20,
+      "count": 1
+    }
+  ]
+}
